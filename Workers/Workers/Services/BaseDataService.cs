@@ -6,7 +6,10 @@ namespace Workers.Services
 {
     internal class BaseDataService<T>
     {
-        public T InstanceInterface
+        /// <summary>
+        /// Интерфейс для работы с сервисами
+        /// </summary>
+        public static T InstanceInterface
         {
             get
             {

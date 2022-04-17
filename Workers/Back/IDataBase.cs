@@ -3,10 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Back
 {
-    public class DataBase : DbContext, IDataBase
+    public interface IDataBase
     {
         public DbSet<Worker>? Workers { get; set; }
-
-        public DataBase(DbContextOptions<DataBase> options) : base(options) {}
     }
 }

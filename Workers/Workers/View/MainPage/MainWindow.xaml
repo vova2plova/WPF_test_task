@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="window_Loaded">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <StackPanel Background="AliceBlue" Orientation="Horizontal">
             <ScrollViewer>
@@ -36,13 +36,13 @@
             </ScrollViewer>
             <StackPanel Width="300" Background="LightBlue">
                 <Label Content="Должность" HorizontalAlignment="Center"/>
-                <ComboBox Width="200" ItemsSource="{Binding Positions}"
+                <ComboBox x:Name="PositionList" Width="200" ItemsSource="{Binding Positions}"
                             SelectedValue="{Binding Position, Mode = OneWayToSource}"/>
                 <Label Content="Зарплата >=" HorizontalAlignment="Center"/>
-                <TextBox Width="200" Text="{Binding Salary, Mode = OneWayToSource}"/>
+                <TextBox x:Name="SalaryBox" Width="200" Text="{Binding Salary, Mode = OneWayToSource, ValidatesOnExceptions=True}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <Button Content="Применить фильтр" Margin="2.5" Click="ActivateFiltering_Click"/>
-                    <Button Content="Сброс фильтров" Margin="2.5" Click="DeactivateFiltering_Click"/>
+                    <Button x:Name="ActivateFilteringButton" Content="Применить фильтр" Margin="2.5" Click="ActivateFiltering_Click"/>
+                    <Button x:Name="DeactivateFilteringButton" Content="Сброс фильтров" Margin="2.5" Click="DeactivateFiltering_Click"/>
                 </StackPanel>
             </StackPanel>
             <Border BorderBrush="Black" BorderThickness="1" Width="100"/>

@@ -16,11 +16,14 @@ namespace Workers.View.MainPage
         public ObservableCollection<Worker> Workers { get; set; } = new ObservableCollection<Worker>();
         public ObservableCollection<string> Positions { get; set; } = new ObservableCollection<string>();
 
-        private static List<Worker> _workers = new List<Worker>();
-        private static List<string> _positions = new List<string>();
+        private static List<Worker> _workers = new ();
+        private static List<string> _positions = new ();
         private string _position = "";
         private int _salary;
 
+        /// <summary>
+        /// Служит для привязки ввода зарплаты.
+        /// </summary>
         public string Salary
         {
             set
@@ -29,13 +32,21 @@ namespace Workers.View.MainPage
             }
         }
 
+        /// <summary>
+        /// Служит для привязки ввода должности.
+        /// </summary>
         public string Position
         {
             set => _position = value;
         }
+
+        /// <summary>
+        /// Загружает работников в ItemsControl - StaffList.
+        /// </summary>
         public async void LoadWorkers()
         {
-            var workers = await MainService.WorkerServices.GetWorkers();
+            
+            var workers = await MainService.WorkerServices.GetAllWorkersAsync();
             if (workers.IsSuccessStatusCode)
             {
                 _workers = workers.Content;
@@ -44,9 +55,12 @@ namespace Workers.View.MainPage
             }
         }
 
+        /// <summary>
+        /// Загружает список должностей в ComboBox - PositionList.
+        /// </summary>
         public async void LoadPositions()
         {
-            var positions = await MainService.WorkerServices.GetPositions();
+            var positions = await MainService.WorkerServices.GetUniquePositionsAsync();
             if (positions.IsSuccessStatusCode)
             {
                 _positions = positions.Content;
@@ -55,20 +69,30 @@ namespace Workers.View.MainPage
             }
         }
 
+        /// <summary>
+        /// Активирует фильтрацию работников по правилу (Зарплата >=, Должность =).
+        /// </summary>
         public void ActivateFiltering()
         {
             Workers = new ObservableCollection<Worker>(_workers.Where(w => w.Salary >= _salary && w.Position == _position));
             OnPropertyChanged(nameof(Workers));
         }
 
+        /// <summary>
+        /// Отключает фильтрацию работников.
+        /// </summary>
         public void DeactivateFiltering()
         {
             Workers = new ObservableCollection<Worker>(_workers);
             OnPropertyChanged(nameof(Workers));
         }
 
+        /// <summary>
+        /// Передаёт информацию о том, что объект изменился.
+        /// </summary>
+        /// <param name="propertyName">Изменённый объект</param>
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
