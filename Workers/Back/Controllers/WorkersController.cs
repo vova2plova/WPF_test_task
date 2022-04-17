@@ -16,9 +16,9 @@ namespace Back.Controllers
         }
 
         /// <summary>
-        /// Http запрос для возрата списка сотрудников.
+        /// Http Р·Р°РїСЂРѕСЃ РґР»СЏ РІРѕР·СЂР°С‚Р° СЃРїРёСЃРєР° СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ.
         /// </summary>
-        /// <returns>Результат Task содержит ActionResult, Контент ActionResult содержит в себе список всех сотрудников.</returns>
+        /// <returns>Р РµР·СѓР»СЊС‚Р°С‚ Task СЃРѕРґРµСЂР¶РёС‚ ActionResult, РљРѕРЅС‚РµРЅС‚ ActionResult СЃРѕРґРµСЂР¶РёС‚ РІ СЃРµР±Рµ СЃРїРёСЃРѕРє РІСЃРµС… СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         [HttpGet("GetAllWorkers")]
         public async Task<ActionResult<List<Worker>>> GetAllWorkersAsync()
@@ -33,9 +33,9 @@ namespace Back.Controllers
         }
 
         /// <summary>
-        /// Http запрос для возврата списка имеющихся должностей.
+        /// Http Р·Р°РїСЂРѕСЃ РґР»СЏ РІРѕР·РІСЂР°С‚Р° СЃРїРёСЃРєР° РёРјРµСЋС‰РёС…СЃСЏ РґРѕР»Р¶РЅРѕСЃС‚РµР№.
         /// </summary>
-        /// <returns>Результат Task содержит ActionResult, Контент ActionResult содержит в себе список уникальных должностей.</returns>
+        /// <returns>Р РµР·СѓР»СЊС‚Р°С‚ Task СЃРѕРґРµСЂР¶РёС‚ ActionResult, РљРѕРЅС‚РµРЅС‚ ActionResult СЃРѕРґРµСЂР¶РёС‚ РІ СЃРµР±Рµ СЃРїРёСЃРѕРє СѓРЅРёРєР°Р»СЊРЅС‹С… РґРѕР»Р¶РЅРѕСЃС‚РµР№.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         [HttpGet("GetPositions")]
         public async Task<ActionResult<List<string>>> GetUniquePositionsAsync()
